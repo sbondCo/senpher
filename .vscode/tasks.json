@@ -2,17 +2,26 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
-      "command": "dotnet",
-      "type": "shell",
-      "args": ["watch", "run", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary"],
+      "label": "Serve",
+      "dependsOn": ["dev:api", "dev:db"],
+      "dependsOrder": "parallel",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "presentation": {
-        "reveal": "silent"
-      },
+      "problemMatcher": "$msCompile",
+      "isBackground": true
+    },
+    {
+      "label": "dev:api",
+      "command": "dotnet watch run",
+      "type": "shell",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dev:db",
+      "command": "sudo docker-compose -f docker-compose.dev.yml up ",
+      "type": "shell",
       "problemMatcher": "$msCompile"
     }
   ]
