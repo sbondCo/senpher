@@ -1,2 +1,6 @@
+.git
+.dockerignore
+Dockerfile
+README.md
 bin/
 obj/
