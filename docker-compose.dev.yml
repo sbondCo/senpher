@@ -1,15 +1,7 @@
 version: "3.9"
 
 services:
-  api:
-    build: .
-    restart: unless-stopped
-    ports:
-      - "8000:80"
-    volumes:
-      - ".:/app"
-    depends_on:
-      - db
+  # Run build task in dev environment for api so watching files works.
 
   db:
     image: "mongo"
