@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Senpher.Models;
+using Senpher.Services;
 
 namespace Senpher.Controllers
 {
@@ -12,16 +13,16 @@ namespace Senpher.Controllers
   [Route("[controller]")]
   public class FileController : ControllerBase
   {
-    public FileController()
-    {
-    }
-
     [HttpGet("{id}")]
     public File Get(int id)
     {
+      var db = Database.Get();
+      var col = db.GetCollection<File>("file");
+      Console.WriteLine(col);
+
       return new File
       {
-        Name = $"hello {id}"
+        Name = $"grobgroop {id}"
       };
     }
   }

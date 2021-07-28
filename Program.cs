@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Senpher.Services;
 
 namespace Senpher
 {
@@ -13,6 +14,8 @@ namespace Senpher
   {
     public static void Main(string[] args)
     {
+      Database.Connect();
+      
       CreateHostBuilder(args).Build().Run();
     }
 
@@ -22,5 +25,7 @@ namespace Senpher
         {
           webBuilder.UseStartup<Startup>();
         });
+
+    
   }
 }
