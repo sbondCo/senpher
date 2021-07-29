@@ -18,7 +18,8 @@ namespace Senpher.Services
 
     public static void Connect()
     {
-      if (Database._database != null) {
+      if (Database._database != null)
+      {
         Console.WriteLine("Already connected to DB.");
         return;
       }
@@ -35,8 +36,10 @@ namespace Senpher.Services
       Console.WriteLine("Connected to DB");
     }
 
-    public static IMongoDatabase Get() {
-      if (Database._database != null) {
+    public static IMongoDatabase Get()
+    {
+      if (Database._database != null)
+      {
         return Database._database;
       }
 
