@@ -1,4 +1,5 @@
 using System;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Senpher.Services
@@ -15,14 +16,19 @@ namespace Senpher.Services
         return;
       }
 
-      var constring = "mongodb://1234:1234@172.17.0.1:27017/test";
+      var settings = new MongoClientSettings
+      {
+        Credential = MongoCredential.CreateCredential("senpher", "senpher", "senpherpwd"),
+        Server = new MongoServerAddress("172.17.0.1", 27017)
+      };
 
-      var settings = MongoClientSettings.FromConnectionString(constring);
       // Set the version of the Versioned API on the client.
       settings.ServerApi = new ServerApi(ServerApiVersion.V1);
-      var client = new MongoClient(settings);
 
+      var client = new MongoClient(settings);
       Database._database = client.GetDatabase("senpher");
+
+      // Database._database.RunCommandAsync((Command<BsonDocument>)"{ ping: 1 }").Wait();
 
       Console.WriteLine("Connected to DB");
     }

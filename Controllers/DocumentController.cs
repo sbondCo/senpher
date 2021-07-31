@@ -50,6 +50,15 @@ namespace Senpher.Controllers
       // Reset position in stream
       Request.Body.Position = 0;
 
+      // Add to DB
+      var db = Database.Get();
+      var col = db.GetCollection<Document>("files");
+
+      await col.InsertOneAsync(new Document
+      {
+        Name = "hi"
+      });
+
       return content;
     }
   }
